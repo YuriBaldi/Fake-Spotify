@@ -3,9 +3,12 @@ const botaoProximo = document.getElementById("proximo");
 const botaoAnterior = document.getElementById("anterior");
 const nomeMusica = document.getElementById("musica");
 const audio = document.getElementById("audio");
+const imgNome = document.getElementById("img");
 isPlaying = false;
 let musica = 1;
+let numImg = 1;
 const quantidadeMusicas =3;
+const quantidadeImgs = 3;
 
 function tocarFaixa(){
     audio.play();
@@ -31,24 +34,30 @@ function tocarOuPausarFaixa(){
 }
 
 function proximaFaixa(){
-    if (musica < quantidadeMusicas){
+    if (musica < quantidadeMusicas && numImg < quantidadeImgs){
         musica+= 1;
+        numImg+= 1;
     }else{
         musica = 1;
-    }
+        numImg = 1;
+    } 
     audio.src = "./audio/" + musica + ".mp3";
+    imgNome.src = "./img/" + numImg + ".jpg";
     nomeMusica.innerText = "Música " + musica;
     tocarFaixa();
     
 }
 
 function musicaAnterior(){
-    if (musica === 1){
+    if (musica === 1 && numImg === 1){
         musica = quantidadeMusicas;
+        numImg = quantidadeImgs;
     } else{
         musica-=1;
+        numImg-=1;
     }
     audio.src = "./audio/" + musica + ".mp3";
+    imgNome.src = "./img/" + numImg + ".jpg";
     nomeMusica.innerText = "Música " + musica;
     tocarFaixa();
 }
